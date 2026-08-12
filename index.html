@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FACTORY</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f4f6f8;color:#17202a}
+header{background:#17202a;color:white;padding:18px;text-align:center}
+header h1{margin:0;font-size:28px}
+nav{display:flex;overflow:auto;background:white;border-bottom:1px solid #ddd}
+nav button{flex:1;min-width:110px;padding:14px 8px;border:0;background:white;font-weight:bold}
+nav button.active{background:#17202a;color:white}
+.page{display:none;padding:15px;max-width:800px;margin:auto}
+.page.active{display:block}
+.card{background:white;border-radius:14px;padding:16px;margin:12px 0;box-shadow:0 2px 8px #0001}
+h2{margin-top:5px}
+label{display:block;font-weight:bold;margin-top:12px}
+input,select{width:100%;padding:12px;border:1px solid #ccc;border-radius:8px;font-size:16px}
+button.action{width:100%;padding:13px;margin-top:14px;border:0;border-radius:9px;background:#17202a;color:white;font-size:16px;font-weight:bold}
+button.red{background:#b42318}
+button.green{background:#16803c}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.stat{display:inline-block;background:#eef2f5;border-radius:10px;padding:12px;margin:4px}
+.machine{border-left:5px solid #17202a}
+.small{font-size:13px;color:#666}
+table{width:100%;border-collapse:collapse;margin-top:10px}
+th,td{padding:8px;border-bottom:1px solid #ddd;text-align:left}
+.badge{display:inline-block;padding:5px 8px;border-radius:6px;background:#e8f5e9;color:#176b2c}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>FACTORY</h1>
+<div class="small" style="color:#ccc">Kapda Factory Production & Hisab</div>
+</header>
+
+<nav>
+<button class="active" onclick="showPage('home',this)">Home</button>
+<button onclick="showPage('warp',this)">Warp</button>
+<button onclick="showPage('production',this)">Production</button>
+<button onclick="showPage('expense',this)">Kharcha</button>
+<button onclick="showPage('payment',this)">Payment</button>
+</nav>
+
+<div id="home" class="page active">
+<h2>Factory Dashboard</h2>
+
+<div class="card">
+<label>Factory</label>
+<select id="homeFactory" onchange="renderMachines()">
+<option value="1">Factory 1</option>
+<option value="2">Factory 2</option>
+</select>
+</div>
+
+<div id="machineList"></div>
+</div>
+
+
+<div id="warp" class="page">
+<h2>Warp Cycle</h2>
+
+<div class="card">
+<label>Factory</label>
+<select id="warpFactory" onchange="updateWarpMachines()">
+<option value="1">Factory 1</option>
+<option value="2">Factory 2</option>
+</select>
+
+<label>Machine</label>
+<select id="warpMachine"></select>
+
+<label>Warp Start Date</label>
+<input type="date" id="warpDate">
+
+<label>Warp Weight (KG)</label>
+<input type="number" id="warpWeight" step="0.01" placeholder="Jaise 250">
+
+<button class="action green" onclick="startWarp()">Warp Start Karein</button>
+</div>
+
+<div class="card">
+<h3>Chalta Hua Warp</h3>
+<div id="activeWarps"></div>
+</div>
+
+<div class="card">
+<h3>Purane Warp Cycles</h3>
+<div id="closedWarps"></div>
+</div>
+</div>
+
+
+<div id="production" class="page">
+<h2>Production Meter</h2>
+
+<div class="card">
+<label>Factory</label>
+<select id="prodFactory" onchange="updateProdMachines()">
+<option value="1">Factory 1</option>
+<option value="2">Factory 2</option>
+</select>
+
+<label>Machine</label>
+<select id="prodMachine"></select>
+
+<label>Date</label>
+<input type="date" id="prodDate">
+
+<label>Aaj ka Meter</label>
+<input type="number" id="prodMeter" step="0.01" placeholder="Meter">
+
+<button class="action green" onclick="addProduction()">Production Save Karein</button>
+</div>
+
+<div class="card">
+<h3>Production Records</h3>
+<div id="productionList"></div>
+</div>
+</div>
+
+
+<div id="expense" class="page">
+<h2>Kharcha</h2>
+
+<div class="card">
+<label>Factory</label>
+<select id="expFactory">
+<option value="1">Factory 1</option>
+<option value="2">Factory 2</option>
+</select>
+
+<label>Kharch ka Type</label>
+<select id="expType" onchange="toggleMachineExpense()">
+<option value="machine">Machine Kharcha</option>
+<option value="maintenance">Maintenance</option>
+<option value="electricity">Electricity Bill</option>
+<option value="rent">Rent</option>
+<option value="other">Other</option>
+</select>
+
+<div id="machineExpenseBox">
+<label>Machine</label>
+<select id="expMachine"></select>
+</div>
+
+<label>Date</label>
+<input type="date" id="expDate">
+
+<label>Amount (₹)</label>
+<input type="number" id="expAmount" step="0.01">
+
+<label>Details</label>
+<input type="text" id="expDetails" placeholder="Kis cheez ka kharcha">
+
+<button class="action" onclick="addExpense()">Kharcha Save Karein</button>
+</div>
+
+<div class="card">
+<h3>Kharcha Records</h3>
+<div id="expenseList"></div>
+</div>
+</div>
+
+
+<div id="payment" class="page">
+<h2>Karigar Payment</h2>
+
+<div class="card">
+<label>Factory</label>
+<select id="payFactory">
+<option value="1">Factory 1</option>
+<option value="2">Factory 2</option>
+</select>
+
+<label>Karigar ka Naam</label>
+<input type="text" id="workerName">
+
+<label>Week Start</label>
+<input type="date" id="weekDate">
+
+<label>Total Meter</label>
+<input type="number" id="workerMeter" step="0.01">
+
+<label>Rate ₹ / Meter</label>
+<input type="number" id="workerRate" step="0.01">
+
+<button class="action green" onclick="addPayment()">Payment Save Karein</button>
+</div>
+
+<div class="card">
+<h3>Payment Records</h3>
+<div id="paymentList"></div>
+</div>
+</div>
+
+
+<script>
+const KEY="FACTORY_DATA_V1";
+
+let db=JSON.parse(localStorage.getItem(KEY)||'null')||{
+ warps:[],
+ production:[],
+ expenses:[],
+ payments:[]
+};
+
+function save(){
+ localStorage.setItem(KEY,JSON.stringify(db));
+}
+
+function machines(factory){
+ return factory=="1"
+ ? [1,2,3,4]
+ : [5,6,7,8,9,10];
+}
+
+function machineOptions(id){
+ let f=document.getElementById(id);
+ f.innerHTML="";
+ let factory=id.includes("Machine")||id.includes("machine")?"1":"1";
+}
+
+function fillMachines(selectId,factory){
+ let s=document.getElementById(selectId);
+ s.innerHTML="";
+ machines(factory).forEach(m=>{
+  let o=document.createElement("option");
+  o.value=m;
+  o.textContent="Machine "+m;
+  s.appendChild(o);
+ });
+}
+
+function today(){
+ return new Date().toISOString().slice(0,10);
+}
+
+function showPage(id,btn){
+ document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+ document.getElementById(id).classList.add("active");
+ document.querySelectorAll("nav button").forEach(b=>b.classList.remove("active"));
+ btn.classList.add("active");
+ refresh();
+}
+
+function updateWarpMachines(){
+ fillMachines("warpMachine",document.getElementById("warpFactory").value);
+}
+
+function updateProdMachines(){
+ fillMachines("prodMachine",document.getElementById("prodFactory").value);
+}
+
+function updateExpenseMachines(){
+ fillMachines("expMachine",document.getElementById("expFactory").value);
+}
+
+function startWarp(){
+ let factory=document.getElementById("warpFactory").value;
+ let machine=document.getElementById("warpMachine").value;
+ let weight=parseFloat(document.getElementById("warpWeight").value);
+ let date=document.getElementById("warpDate").value||today();
+
+ if(!weight||weight<=0){
+  alert("Warp ka weight enter karein");
+  return;
+ }
+
+ let already=db.warps.find(w=>w.factory==factory&&w.machine==machine&&!w.closed);
+ if(already){
+  alert("Is machine par ek Warp pehle se chal raha hai.");
+  return;
+ }
+
+ db.warps.push({
+  id:Date.now(),
+  factory,machine,weight,startDate:date,
+  closed:false,
+  closeDate:"",
+  totalMeter:0,
+  gramPerMeter:0
+ });
+
+ save();
+ alert("Warp start ho gaya.");
+ refresh();
+}
+
+function addProduction(){
+ let factory=document.getElementById("prodFactory").value;
+ let machine=document.getElementById("prodMachine").value;
+ let meter=parseFloat(document.getElementById("prodMeter").value);
+ let date=document.getElementById("prodDate").value||today();
+
+ if(!meter||meter<=0){
+  alert("Meter enter karein");
+  return;
+ }
+
+ let warp=db.warps.find(w=>w.factory==factory&&w.machine==machine&&!w.closed);
+
+ if(!warp){
+  alert("Is machine par active Warp nahi hai.");
+  return;
+ }
+
+ db.production.push({
+  id:Date.now(),
+  factory,machine,meter,date,
+  warpId:warp.id
+ });
+
+ warp.totalMeter=Number(warp.totalMeter)+meter;
+
+ save();
+ document.getElementById("prodMeter").value="";
+ alert("Production save ho gayi.");
+ refresh();
+}
+
+function closeWarp(id){
+ let w=db.warps.find(x=>x.id==id);
+ if(!w)return;
+
+ if(w.totalMeter<=0){
+  alert("Is Warp ki production abhi zero hai.");
+  return;
+ }
+
+ w.closed=true;
+ w.closeDate=today();
+ w.gramPerMeter=(w.weight*1000)/w.totalMeter;
+
+ save();
+
+ alert(
+ "Warp close ho gaya.\n\n"+
+ "Warp: "+w.weight+" kg\n"+
+ "Production: "+w.totalMeter.toFixed(2)+" meter\n"+
+ "Warp: "+w.gramPerMeter.toFixed(2)+" gram/meter"
+ );
+
+ refresh();
+}
+
+function addExpense(){
+ let factory=document.getElementById("expFactory").value;
+ let type=document.getElementById("expType").value;
+ let machine=type=="machine"||type=="maintenance"
+  ?document.getElementById("expMachine").value:"";
+ let amount=parseFloat(document.getElementById("expAmount").value);
+ let date=document.getElementById("expDate").value||today();
+ let details=document.getElementById("expDetails").value;
+
+ if(!amount||amount<=0){
+  alert("Amount enter karein");
+  return;
+ }
+
+ db.expenses.push({
+  id:Date.now(),factory,type,machine,amount,date,details
+ });
+
+ save();
+ alert("Kharcha save ho gaya.");
+ document.getElementById("expAmount").value="";
+ document.getElementById("expDetails").value="";
+ refresh();
+}
+
+function toggleMachineExpense(){
+ let type=document.getElementById("expType").value;
+ document.getElementById("machineExpenseBox").style.display=
+  (type=="machine"||type=="maintenance")?"block":"none";
+}
+
+function addPayment(){
+ let factory=document.getElementById("payFactory").value;
+ let worker=document.getElementById("workerName").value.trim();
+ let date=document.getElementById("weekDate").value||today();
+ let meter=parseFloat(document.getElementById("workerMeter").value);
+ let rate=parseFloat(document.getElementById("workerRate").value);
+
+ if(!worker||!meter||!rate){
+  alert("Naam, meter aur rate bharein");
+  return;
+ }
+
+ db.payments.push({
+  id:Date.now(),factory,worker,date,meter,rate,
+  total:meter*rate
+ });
+
+ save();
+ alert("Payment save ho gayi.");
+ document.getElementById("workerName").value="";
+ document.getElementById("workerMeter").value="";
+ document.getElementById("workerRate").value="";
+ refresh();
+}
+
+function renderMachines(){
+ let factory=document.getElementById("homeFactory").value;
+ let box=document.getElementById("machineList");
+ box.innerHTML="";
+
+ machines(factory).forEach(m=>{
+  let warp=db.warps.find(w=>w.factory==factory&&w.machine==m&&!w.closed);
+  let prod=db.production
+   .filter(p=>p.factory==factory&&p.machine==m)
+   .reduce((a,b)=>a+Number(b.meter),0);
+
+  let expenses=db.expenses
+   .filter(e=>e.factory==factory&&e.machine==m)
+   .reduce((a,b)=>a+Number(b.amount),0);
+
+  box.innerHTML+=`
+  <div class="card machine">
+   <h3>Machine ${m}</h3>
+   <div class="stat">Production<br><b>${prod.toFixed(2)} m</b></div>
+   <div class="stat">Machine Kharcha<br><b>₹${expenses.toFixed(2)}</b></div>
+   <p>
+   ${warp
+    ? `<span class="badge">Warp ${warp.weight} kg running</span>`
+    : `<span class="small">Active Warp nahi hai</span>`}
+   </p>
+  </div>`;
+ });
+}
+
+function renderActiveWarps(){
+ let box=document.getElementById("activeWarps");
+ let list=db.warps.filter(w=>!w.closed);
+
+ if(!list.length){
+  box.innerHTML="<p class='small'>Koi active Warp nahi.</p>";
+  return;
+ }
+
+ box.innerHTML=list.map(w=>`
+ <div class="card">
+  <b>Factory ${w.factory} - Machine ${w.machine}</b>
+  <p>Warp: <b>${w.weight} kg</b></p>
+  <p>Start: ${w.startDate}</p>
+  <p>Total Meter: <b>${Number(w.totalMeter).toFixed(2)}</b></p>
+  <button class="action red" onclick="closeWarp(${w.id})">
+   Warp Khatam / Close
+  </button>
+ </div>`).join("");
+}
+
+function renderClosedWarps(){
+ let box=document.getElementById("closedWarps");
+ let list=db.warps.filter(w=>w.closed).slice().reverse();
+
+ if(!list.length){
+  box.innerHTML="<p class='small'>Abhi koi closed Warp nahi.</p>";
+  return;
+ }
+
+ box.innerHTML="<table><tr><th>Machine</th><th>Warp kg</th><th>Meter</th><th>g/m</th></tr>"+
+ list.map(w=>`
+ <tr>
+ <td>F${w.factory} M${w.machine}</td>
+ <td>${w.weight}</td>
+ <td>${Number(w.totalMeter).toFixed(2)}</td>
+ <td><b>${Number(w.gramPerMeter).toFixed(2)}</b></td>
+ </tr>`).join("")+"</table>";
+}
+
+function renderProduction(){
+ let box=document.getElementById("productionList");
+ let list=db.production.slice().reverse();
+
+ if(!list.length){
+  box.innerHTML="<p class='small'>Abhi production record nahi hai.</p>";
+  return;
+ }
+
+ box.innerHTML="<table><tr><th>Date</th><th>Machine</th><th>Meter</th></tr>"+
+ list.slice(0,100).map(p=>`
+ <tr>
+ <td>${p.date}</td>
+ <td>F${p.factory} M${p.machine}</td>
+ <td>${Number(p.meter).toFixed(2)}</td>
+ </tr>`).join("")+"</table>";
+}
+
+function renderExpenses(){
+ let box=document.getElementById("expenseList");
+ let list=db.expenses.slice().reverse();
+
+ if(!list.length){
+  box.innerHTML="<p class='small'>Abhi kharcha record nahi hai.</p>";
+  return;
+ }
+
+ box.innerHTML="<table><tr><th>Date</th><th>Type</th><th>Machine</th><th>₹</th></tr>"+
+ list.slice(0,100).map(e=>`
+ <tr>
+ <td>${e.date}</td>
+ <td>${e.type}</td>
+ <td>${e.machine?e.machine:"Factory"}</td>
+ <td>${Number(e.amount).toFixed(2)}</td>
+ </tr>`).join("")+"</table>";
+}
+
+function renderPayments(){
+ let box=document.getElementById("paymentList");
+ let list=db.payments.slice().reverse();
+
+ if(!list.length){
+  box.innerHTML="<p class='small'>Abhi payment record nahi hai.</p>";
+  return;
+ }
+
+ box.innerHTML="<table><tr><th>Naam</th><th>Meter</th><th>Rate</th><th>Total</th></tr>"+
+ list.slice(0,100).map(p=>`
+ <tr>
+ <td>${p.worker}</td>
+ <td>${p.meter}</td>
+ <td>₹${p.rate}</td>
+ <td><b>₹${p.total.toFixed(2)}</b></td>
+ </tr>`).join("")+"</table>";
+}
+
+function refresh(){
+ renderMachines();
+ renderActiveWarps();
+ renderClosedWarps();
+ renderProduction();
+ renderExpenses();
+ renderPayments();
+}
+
+document.getElementById("warpDate").value=today();
+document.getElementById("prodDate").value=today();
+document.getElementById("expDate").value=today();
+document.getElementById("weekDate").value=today();
+
+updateWarpMachines();
+updateProdMachines();
+updateExpenseMachines();
+
+document.getElementById("expFactory").addEventListener("change",updateExpenseMachines);
+
+refresh();
+</script>
+
+</body>
+</html>
