@@ -8,127 +8,344 @@
 
 <style>
 *{box-sizing:border-box}
-body{
- margin:0;background:#eef3f8;color:#172033;
- font:14px Arial,sans-serif
-}
-header{
- background:#0b2348;color:#fff;padding:18px 10px;
- text-align:center;box-shadow:0 3px 12px #0003
-}
-.brand{font:700 32px Georgia,serif;letter-spacing:1px}
-.phone{font-size:21px;font-weight:800;margin-top:4px}
-.deal{font-size:14px;font-weight:700;margin-top:6px;letter-spacing:.3px}
 
-main{max-width:900px;margin:auto;padding:10px}
+body{
+margin:0;
+background:#eef3f8;
+color:#172033;
+font:14px Arial,sans-serif
+}
+
+header{
+background:#0b2348;
+color:#fff;
+padding:18px 10px;
+text-align:center;
+box-shadow:0 3px 12px #0003
+}
+
+.brand{
+font:700 32px Georgia,serif;
+letter-spacing:1px
+}
+
+.phone{
+font-size:21px;
+font-weight:800;
+margin-top:4px
+}
+
+.deal{
+font-size:14px;
+font-weight:700;
+margin-top:6px
+}
+
+main{
+max-width:900px;
+margin:auto;
+padding:10px
+}
+
 .card{
- background:#fff;border-radius:14px;padding:15px;margin:10px 0;
- box-shadow:0 3px 14px #17304b18
+background:#fff;
+border-radius:14px;
+padding:15px;
+margin:10px 0;
+box-shadow:0 3px 14px #17304b18
 }
-h2{margin:0 0 12px;color:#0b3976;font-size:18px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-label{display:block;font-size:12px;color:#667085;margin-bottom:4px}
+
+h2{
+margin:0 0 12px;
+color:#0b3976;
+font-size:18px
+}
+
+.grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px
+}
+
+label{
+display:block;
+font-size:12px;
+color:#667085;
+margin-bottom:4px
+}
+
 input,select{
- width:100%;padding:10px;border:1px solid #ccd6e2;
- border-radius:9px;font:inherit;background:#fff
+width:100%;
+padding:10px;
+border:1px solid #ccd6e2;
+border-radius:9px;
+font:inherit;
+background:#fff
 }
+
 button{
- border:0;border-radius:9px;padding:10px 14px;
- font-weight:700;cursor:pointer
+border:0;
+border-radius:9px;
+padding:10px 14px;
+font-weight:700;
+cursor:pointer
 }
+
 .blue{background:#1466c2;color:#fff}
 .green{background:#138a43;color:#fff}
 .red{background:#d93636;color:#fff}
 .gray{background:#e9eef4;color:#172033}
+
 .row{
- display:grid;grid-template-columns:1fr 130px 1fr auto;
- gap:8px;align-items:end
+display:grid;
+grid-template-columns:1fr 130px 1fr auto;
+gap:8px;
+align-items:end
 }
-.actions{display:flex;gap:8px;flex-wrap:wrap}
+
+.actions{
+display:flex;
+gap:8px;
+flex-wrap:wrap
+}
 
 .item{
- border:1px solid #d9e2ec;border-radius:10px;
- padding:9px;margin:7px 0;background:#fbfdff
+border:1px solid #d9e2ec;
+border-radius:10px;
+padding:9px;
+margin:7px 0;
+background:#fbfdff
 }
+
 .itemtop{
- display:flex;justify-content:space-between;
- font-weight:700;color:#174b8f
+display:flex;
+justify-content:space-between;
+font-weight:700;
+color:#174b8f
 }
-.lumps{display:flex;flex-direction:column;gap:5px;margin-top:7px}
-.lump{display:grid;grid-template-columns:28px 1fr 36px;gap:5px}
+
+.lumps{
+display:flex;
+flex-direction:column;
+gap:5px;
+margin-top:7px
+}
+
+.lump{
+display:grid;
+grid-template-columns:28px 1fr 36px;
+gap:5px
+}
+
+/* BILL */
 
 .bill{
- border:2px solid #3188a5;
- padding:16px;background:#fff;
- box-shadow:0 4px 18px #17304b20
+border:2px solid #3188a5;
+padding:18px;
+background:#fff;
+box-shadow:0 4px 18px #17304b20
 }
+
 .billhead{
- display:flex;justify-content:space-between;
- border-bottom:2px solid #3188a5;padding-bottom:10px;
- gap:10px
+display:flex;
+justify-content:space-between;
+align-items:flex-start;
+border-bottom:2px solid #3188a5;
+padding-bottom:12px;
+gap:10px
 }
+
 .shop{
- font:700 30px Georgia,serif;
- color:#0b2c62;letter-spacing:.5px
+font:700 30px Georgia,serif;
+color:#0b2c62;
+letter-spacing:.5px
 }
-.billphone{font-size:18px;font-weight:800;margin-top:3px}
-.billdeal{font-size:12px;font-weight:700;margin-top:3px}
+
+.billphone{
+font-size:18px;
+font-weight:800;
+margin-top:3px
+}
+
+.billdeal{
+font-size:12px;
+font-weight:700;
+margin-top:4px
+}
+
 .billbook{
- font-weight:800;color:#0b3976;
- white-space:nowrap;font-size:16px
+font-weight:800;
+color:#0b3976;
+font-size:20px;
+border:2px solid #3188a5;
+padding:7px 12px;
+border-radius:8px
 }
-.cust{
- border:1px solid #a9c8d5;padding:9px;margin:10px 0;
- background:#f8fbfd
+
+.billinfo{
+display:grid;
+grid-template-columns:2fr 1fr 1fr 1fr;
+gap:8px;
+margin:12px 0
 }
-.meta{
- display:flex;justify-content:space-between;
- margin:9px 0;font-size:13px
+
+.billinfo div{
+border:1px solid #a9c8d5;
+padding:8px;
+background:#f8fbfd;
+border-radius:6px
 }
-table{width:100%;border-collapse:collapse}
-th,td{
- border:1px solid #777;padding:7px;
- text-align:center;vertical-align:top
+
+.billinfo span{
+display:block;
+font-size:11px;
+color:#667085;
+margin-bottom:4px
 }
-th{background:#edf4f8;color:#173b61}
-.iname{font-weight:700;color:#173b61}
-.ll{line-height:1.5;margin-top:4px}
-.total{font-weight:bold;background:#eef5fa}
+
+.billinfo b{
+display:block;
+color:#173b61
+}
+
+.prettytable{
+width:100%;
+border-collapse:collapse
+}
+
+.prettytable th,
+.prettytable td{
+border:1px solid #777;
+padding:8px;
+text-align:center;
+vertical-align:top
+}
+
+.prettytable th{
+background:#edf4f8;
+color:#173b61
+}
+
+.iname{
+font-weight:700;
+color:#173b61
+}
+
+.ll{
+line-height:1.5;
+margin-top:4px
+}
+
+.total{
+font-weight:bold;
+background:#eef5fa
+}
+
 .signature{
- text-align:right;margin-top:30px;font-weight:600
+display:flex;
+justify-content:space-between;
+align-items:flex-end;
+margin-top:35px;
+font-weight:600
+}
+
+.thank{
+font-size:13px;
+color:#555
+}
+
+.reportgrid{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:8px
+}
+
+.stat{
+background:#f2f6fb;
+border-radius:10px;
+padding:12px;
+text-align:center
+}
+
+.stat b{
+display:block;
+font-size:20px;
+color:#0b3976;
+margin-top:5px
 }
 
 .saved{
- display:flex;justify-content:space-between;
- align-items:center;gap:7px;border:1px solid #dde4eb;
- border-radius:9px;padding:8px;margin:6px 0;
- background:#fbfdff
-}
-.reportgrid{
- display:grid;grid-template-columns:repeat(4,1fr);gap:8px
-}
-.stat{
- background:#f2f6fb;border-radius:10px;
- padding:12px;text-align:center
-}
-.stat b{
- display:block;font-size:20px;color:#0b3976;margin-top:5px
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:7px;
+border:1px solid #dde4eb;
+border-radius:9px;
+padding:8px;
+margin:6px 0;
+background:#fbfdff
 }
 
 @media(max-width:650px){
- .grid,.reportgrid{grid-template-columns:1fr 1fr}
- .row{grid-template-columns:1fr 105px}
- .row>div:nth-child(3){grid-column:1/-1}
- .bill{overflow:auto}
- .bill table{min-width:600px}
- .brand{font-size:27px}
+
+.grid,
+.reportgrid{
+grid-template-columns:1fr 1fr
+}
+
+.row{
+grid-template-columns:1fr 105px
+}
+
+.row>div:nth-child(3){
+grid-column:1/-1
+}
+
+.bill{
+overflow:auto
+}
+
+.prettytable{
+min-width:650px
+}
+
+.billinfo{
+grid-template-columns:1fr 1fr
+}
+
+.brand{
+font-size:27px
+}
+
 }
 
 @media print{
- .noPrint{display:none!important}
- body{background:#fff}
- .card{box-shadow:none}
- .bill{border:0;box-shadow:none}
+
+.noPrint{
+display:none!important
+}
+
+body{
+background:#fff
+}
+
+main{
+padding:0;
+max-width:none
+}
+
+.card{
+margin:0;
+padding:0;
+box-shadow:none
+}
+
+.bill{
+border:0;
+box-shadow:none;
+padding:10px
+}
+
 }
 </style>
 </head>
@@ -136,15 +353,18 @@ th{background:#edf4f8;color:#173b61}
 <body>
 
 <header>
- <div class="brand">HAPURYA TEXTILES</div>
- <div class="phone">9359781800</div>
- <div class="deal">DEALS IN : ALL TYPES OF DOBBY FABRIC</div>
+<div class="brand">HAPURYA TEXTILES</div>
+<div class="phone">9359781800</div>
+<div class="deal">DEALS IN : ALL TYPES OF DOBBY FABRIC</div>
 </header>
 
 <main>
 
+<!-- BILL DETAILS -->
+
 <section class="card noPrint">
 <h2>Bill Details</h2>
+
 <div class="grid">
 
 <div>
@@ -171,7 +391,10 @@ th{background:#edf4f8;color:#173b61}
 </section>
 
 
+<!-- ITEMS -->
+
 <section class="card noPrint">
+
 <h2>Saved Items & Rate</h2>
 
 <div id="items"></div>
@@ -196,7 +419,10 @@ th{background:#edf4f8;color:#173b61}
 </section>
 
 
+<!-- ADD LUMP -->
+
 <section class="card noPrint">
+
 <h2>Add Lump / Meter</h2>
 
 <div class="row">
@@ -221,19 +447,37 @@ th{background:#edf4f8;color:#173b61}
 </div>
 
 <div id="billItems"></div>
+
 </section>
 
 
+<!-- ACTIONS -->
+
 <section class="card noPrint">
+
 <div class="actions">
-<button class="green" onclick="saveBill()">💾 SAVE BILL</button>
-<button class="blue" onclick="window.print()">🖨️ PRINT / PDF</button>
-<button class="gray" onclick="newBill()">＋ NEW BILL</button>
+
+<button class="green" onclick="saveBill()">
+💾 SAVE BILL
+</button>
+
+<button class="blue" onclick="printBill()">
+🖨️ PRINT / PDF
+</button>
+
+<button class="gray" onclick="newBill()">
+＋ NEW BILL
+</button>
+
 </div>
+
 </section>
 
 
+<!-- REPORTS -->
+
 <section class="card noPrint">
+
 <h2>📊 Reports</h2>
 
 <div class="reportgrid">
@@ -261,14 +505,22 @@ Total Items
 </div>
 
 <div id="reports" style="margin-top:12px"></div>
+
 </section>
 
+
+<!-- SAVED BILLS -->
 
 <section class="card noPrint">
+
 <h2>💾 Saved Bills</h2>
+
 <div id="saved"></div>
+
 </section>
 
+
+<!-- FINAL BILL -->
 
 <section class="card">
 
@@ -279,52 +531,98 @@ Total Items
 <div>
 <div class="shop">HAPURYA TEXTILES</div>
 <div class="billphone">9359781800</div>
-<div class="billdeal">DEALS IN : ALL TYPES OF DOBBY FABRIC</div>
+<div class="billdeal">
+DEALS IN : ALL TYPES OF DOBBY FABRIC
+</div>
 </div>
 
-<div class="billbook">BILL BOOK</div>
-
+<div class="billbook">
+BILL
 </div>
 
-
-<div class="cust">
-Sold to M/s. / क्रेता सर्वश्री<br>
-<b id="pParty">—</b><br>
-Mobile No.: <span id="pPhone">—</span>
 </div>
 
 
-<div class="meta">
-<span>No. <b id="pNo">—</b></span>
-<span>Date <b id="pDate">—</b></span>
+<div class="billinfo">
+
+<div>
+<span>Party / Customer</span>
+<b id="pParty">—</b>
+</div>
+
+<div>
+<span>Mobile No.</span>
+<b id="pPhone">—</b>
+</div>
+
+<div>
+<span>Bill No.</span>
+<b id="pNo">—</b>
+</div>
+
+<div>
+<span>Date</span>
+<b id="pDate">—</b>
+</div>
+
 </div>
 
 
-<table>
+<table class="prettytable">
 
 <thead>
+
 <tr>
 <th>No.</th>
 <th>ITEM / विवरण</th>
+<th>LUMP / MTR</th>
 <th>RATE ₹</th>
 <th>AMOUNT ₹</th>
 </tr>
+
 </thead>
 
 <tbody id="preview"></tbody>
 
 <tfoot>
+
 <tr class="total">
-<td colspan="2">TOTAL MTR</td>
-<td>—</td>
-<td id="grand">₹ 0.00</td>
+
+<td colspan="2">
+TOTAL
+</td>
+
+<td id="totalMtr">
+0.00 Mtr
+</td>
+
+<td>
+—
+</td>
+
+<td id="grand">
+₹ 0.00
+</td>
+
 </tr>
+
 </tfoot>
 
 </table>
 
+
 <div class="signature">
-Signature __________________
+
+<div class="thank">
+Thank You
+</div>
+
+<div style="text-align:right">
+<b>For HAPURYA TEXTILES</b>
+<br><br>
+Authorised Signature
+</div>
+
 </div>
 
 </div>
@@ -338,7 +636,8 @@ Signature __________________
 
 const $=id=>document.getElementById(id);
 
-const money=x=>Number(x||0).toLocaleString(
+const money=x=>
+Number(x||0).toLocaleString(
 'en-IN',
 {
 minimumFractionDigits:2,
@@ -346,7 +645,8 @@ maximumFractionDigits:2
 }
 );
 
-const safe=x=>String(x??'').replace(
+const safe=x=>
+String(x??'').replace(
 /[&<>"]/g,
 m=>({
 '&':'&amp;',
@@ -356,461 +656,643 @@ m=>({
 }[m])
 );
 
-let items=JSON.parse(localStorage.htItems||'[]');
+let items=
+JSON.parse(localStorage.htItems||'[]');
+
 let bill=[];
 
+
 function bills(){
- return JSON.parse(localStorage.htBills||'[]');
+
+return JSON.parse(
+localStorage.htBills||'[]'
+);
+
 }
 
+
 function nextNo(){
- return String(
- bills().reduce(
- (m,b)=>Math.max(m,+b.no||0),0
- )+1
- );
+
+return String(
+bills().reduce(
+(m,b)=>Math.max(m,+b.no||0),
+0
+)+1
+);
+
 }
+
 
 function renderItems(){
 
- $('items').innerHTML=items.map((x,i)=>`
+$('items').innerHTML=
 
- <div class="item">
+items.map((x,i)=>`
 
- <div class="itemtop">
+<div class="item">
 
- <span>${safe(x.name)}</span>
+<div class="itemtop">
 
- <span>
- ₹${money(x.rate)}
- <button class="red" onclick="delItem(${i})">✕</button>
- </span>
+<span>
+${safe(x.name)}
+</span>
 
- </div>
+<span>
+₹${money(x.rate)}
 
- </div>
+<button
+class="red"
+onclick="delItem(${i})">
+✕
+</button>
 
- `).join('');
+</span>
 
- $('sel').innerHTML=
- '<option value="">Select Item</option>'+
- items.map((x,i)=>
- `<option value="${i}">
- ${safe(x.name)} — ₹${money(x.rate)}
- </option>`
- ).join('');
+</div>
+
+</div>
+
+`).join('');
+
+$('sel').innerHTML=
+
+'<option value="">Select Item</option>'+
+
+items.map((x,i)=>`
+
+<option value="${i}">
+${safe(x.name)} — ₹${money(x.rate)}
+</option>
+
+`).join('');
+
 }
+
 
 function saveItem(){
 
- let n=$('newName').value.trim();
- let r=+$('newRate').value;
+let n=$('newName').value.trim();
 
- if(!n||!r)
- return alert('Item name aur rate bhariye');
+let r=+$('newRate').value;
 
- let i=items.findIndex(
- x=>x.name.toLowerCase()==n.toLowerCase()
- );
+if(!n||!r){
 
- if(i<0)
- items.push({name:n,rate:r});
- else
- items[i].rate=r;
+return alert(
+'Item name aur rate bhariye'
+);
 
- localStorage.htItems=JSON.stringify(items);
-
- $('newName').value='';
- $('newRate').value='';
-
- renderItems();
 }
+
+let i=
+items.findIndex(
+x=>x.name.toLowerCase()==n.toLowerCase()
+);
+
+if(i<0){
+
+items.push({
+name:n,
+rate:r
+});
+
+}else{
+
+items[i].rate=r;
+
+}
+
+localStorage.htItems=
+JSON.stringify(items);
+
+$('newName').value='';
+$('newRate').value='';
+
+renderItems();
+
+}
+
 
 function delItem(i){
 
- if(confirm('Item delete karein?')){
+if(confirm('Item delete karein?')){
 
- items.splice(i,1);
+items.splice(i,1);
 
- localStorage.htItems=
- JSON.stringify(items);
+localStorage.htItems=
+JSON.stringify(items);
 
- renderItems();
- }
+renderItems();
+
 }
+
+}
+
 
 $('sel').onchange=()=>{
 
- let i=$('sel').value;
+let i=$('sel').value;
 
- $('rate').value=
- i===''?'':items[i].rate;
-}
+$('rate').value=
+i===''?'':items[i].rate;
+
+};
+
 
 function addLump(){
 
- let i=$('sel').value;
- let q=+$('lump').value;
+let i=$('sel').value;
 
- if(i===''||!q)
- return alert('Item select karke Lump Mtr bhariye');
+let q=+$('lump').value;
 
- let x=items[i];
+if(i===''||!q){
 
- let b=bill.find(
- y=>y.name==x.name
- );
+return alert(
+'Item select karke Lump Mtr bhariye'
+);
 
- if(!b){
-
- b={
- name:x.name,
- rate:x.rate,
- lumps:[]
- };
-
- bill.push(b);
- }
-
- b.lumps.push(q);
-
- $('lump').value='';
-
- renderBill();
 }
+
+let x=items[i];
+
+let b=
+bill.find(y=>y.name==x.name);
+
+if(!b){
+
+b={
+name:x.name,
+rate:x.rate,
+lumps:[]
+};
+
+bill.push(b);
+
+}
+
+b.lumps.push(q);
+
+$('lump').value='';
+
+renderBill();
+
+}
+
 
 function removeL(b,l){
 
- bill[b].lumps.splice(l,1);
+bill[b].lumps.splice(l,1);
 
- if(!bill[b].lumps.length)
- bill.splice(b,1);
+if(!bill[b].lumps.length){
 
- renderBill();
+bill.splice(b,1);
+
 }
+
+renderBill();
+
+}
+
 
 function renderBill(){
 
- $('billItems').innerHTML=bill.map((b,i)=>`
+$('billItems').innerHTML=
 
- <div class="item">
+bill.map((b,i)=>`
 
- <div class="itemtop">
+<div class="item">
 
- <span>${safe(b.name)}</span>
+<div class="itemtop">
 
- <span>Rate ₹${money(b.rate)}</span>
+<span>
+${safe(b.name)}
+</span>
 
- </div>
+<span>
+Rate ₹${money(b.rate)}
+</span>
 
- <div class="lumps">
+</div>
 
- ${b.lumps.map((q,j)=>`
+<div class="lumps">
 
- <div class="lump">
+${b.lumps.map((q,j)=>`
 
- <span>${j+1}.</span>
+<div class="lump">
 
- <input
- type="number"
- step=".01"
- value="${q}"
- onchange="bill[${i}].lumps[${j}]=+this.value;preview()"
- >
+<span>${j+1}.</span>
 
- <button
- class="gray"
- onclick="removeL(${i},${j})">
- ✕
- </button>
+<input
+type="number"
+step=".01"
+value="${q}"
+onchange="
+bill[${i}].lumps[${j}]=+this.value;
+preview();
+">
 
- </div>
+<button
+class="gray"
+onclick="removeL(${i},${j})">
+✕
+</button>
 
- `).join('')}
+</div>
 
- </div>
+`).join('')}
 
- </div>
+</div>
 
- `).join('');
+</div>
 
- preview();
+`).join('');
+
+preview();
+
 }
+
 
 function preview(){
 
- $('pParty').textContent=
- $('party').value||'—';
+$('pParty').textContent=
+$('party').value||'—';
 
- $('pPhone').textContent=
- $('phone').value||'—';
+$('pPhone').textContent=
+$('phone').value||'—';
 
- $('pNo').textContent=
- $('no').value||'—';
+$('pNo').textContent=
+$('no').value||'—';
 
- $('pDate').textContent=
- $('date').value
- ?new Date(
- $('date').value+'T00:00'
- ).toLocaleDateString('en-IN')
- :'—';
+$('pDate').textContent=
+$('date').value
+?new Date(
+$('date').value+'T00:00'
+).toLocaleDateString('en-IN')
+:'—';
 
- let amt=0;
- let totalMtr=0;
+let amt=0;
 
- $('preview').innerHTML=bill.map((b,i)=>{
+let totalMtr=0;
 
- let q=b.lumps.reduce(
- (a,v)=>a+(+v||0),0
- );
+$('preview').innerHTML=
 
- let a=q*b.rate;
+bill.map((b,i)=>{
 
- amt+=a;
- totalMtr+=q;
+let q=
+b.lumps.reduce(
+(a,v)=>a+(+v||0),
+0
+);
 
- return `
- <tr>
+let a=
+q*Number(b.rate||0);
 
- <td>${i+1}</td>
+amt+=a;
 
- <td class="iname">
+totalMtr+=q;
 
- ${safe(b.name)}
+return `
 
- <div class="ll">
- ${b.lumps.map(money).join('<br>')}
- </div>
+<tr>
 
- <b>Total: ${money(q)} Mtr</b>
+<td>${i+1}</td>
 
- </td>
+<td class="iname">
 
- <td>₹ ${money(b.rate)}</td>
+${safe(b.name)}
 
- <td>₹ ${money(a)}</td>
+</td>
 
- </tr>
- `;
+<td class="ll">
 
- }).join('');
+${b.lumps.map(money).join('<br>')}
 
- $('grand').textContent=
- '₹ '+money(amt);
+<br>
+
+<b>
+Total: ${money(q)} Mtr
+</b>
+
+</td>
+
+<td>
+₹ ${money(b.rate)}
+</td>
+
+<td>
+₹ ${money(a)}
+</td>
+
+</tr>
+
+`;
+
+}).join('');
+
+$('totalMtr').textContent=
+money(totalMtr)+' Mtr';
+
+$('grand').textContent=
+'₹ '+money(amt);
+
 }
+
 
 function saveBill(){
 
- let p=$('party').value.trim();
+let p=$('party').value.trim();
 
- if(!p)
- return alert('Party name bhariye');
+if(!p){
 
- let n=$('no').value;
+return alert(
+'Party name bhariye'
+);
 
- let d={
- party:p,
- phone:$('phone').value,
- no:n,
- date:$('date').value,
- bill:JSON.parse(JSON.stringify(bill))
- };
-
- let a=bills();
-
- let i=a.findIndex(
- x=>String(x.no)==String(n)
- );
-
- if(i<0)
- a.push(d);
- else
- a[i]=d;
-
- localStorage.htBills=
- JSON.stringify(a);
-
- renderSaved();
- renderReports();
-
- alert('Bill save ho gaya');
 }
+
+let n=$('no').value;
+
+let d={
+
+party:p,
+
+phone:$('phone').value,
+
+no:n,
+
+date:$('date').value,
+
+bill:JSON.parse(
+JSON.stringify(bill)
+)
+
+};
+
+let a=bills();
+
+let i=
+a.findIndex(
+x=>String(x.no)==String(n)
+);
+
+if(i<0){
+
+a.push(d);
+
+}else{
+
+a[i]=d;
+
+}
+
+localStorage.htBills=
+JSON.stringify(a);
+
+renderSaved();
+
+renderReports();
+
+alert('Bill save ho gaya');
+
+}
+
 
 function openBill(i){
 
- let a=bills().sort(
- (x,y)=>(+y.no)-(+x.no)
- );
+let a=
+bills().sort(
+(x,y)=>(+y.no)-(+x.no)
+);
 
- let d=a[i];
+let d=a[i];
 
- $('party').value=d.party;
- $('phone').value=d.phone||'';
- $('no').value=d.no;
- $('date').value=d.date;
+$('party').value=d.party;
 
- bill=d.bill||[];
+$('phone').value=d.phone||'';
 
- renderBill();
+$('no').value=d.no;
+
+$('date').value=d.date;
+
+bill=d.bill||[];
+
+renderBill();
+
 }
+
 
 function delBill(i){
 
- let a=bills().sort(
- (x,y)=>(+y.no)-(+x.no)
- );
+let a=
+bills().sort(
+(x,y)=>(+y.no)-(+x.no)
+);
 
- if(confirm('Bill delete karein?')){
+if(confirm('Bill delete karein?')){
 
- let n=a[i].no;
+let n=a[i].no;
 
- localStorage.htBills=
- JSON.stringify(
- bills().filter(
- x=>String(x.no)!=String(n)
- )
- );
+localStorage.htBills=
+JSON.stringify(
+bills().filter(
+x=>String(x.no)!=String(n)
+)
+);
 
- renderSaved();
- renderReports();
- }
+renderSaved();
+
+renderReports();
+
 }
+
+}
+
 
 function renderSaved(){
 
- let a=bills().sort(
- (x,y)=>(+y.no)-(+x.no)
- );
+let a=
+bills().sort(
+(x,y)=>(+y.no)-(+x.no)
+);
 
- $('saved').innerHTML=a.length
+$('saved').innerHTML=
 
- ?a.map((x,i)=>`
+a.length
 
- <div class="saved">
+?a.map((x,i)=>`
 
- <span>
- <b>Bill ${safe(x.no)}</b>
- — ${safe(x.party)}
- </span>
+<div class="saved">
 
- <span>
+<span>
+<b>Bill ${safe(x.no)}</b>
+—
+${safe(x.party)}
+</span>
 
- <button
- class="blue"
- onclick="openBill(${i})">
- Open
- </button>
+<span>
 
- <button
- class="red"
- onclick="delBill(${i})">
- ✕
- </button>
+<button
+class="blue"
+onclick="openBill(${i})">
+Open
+</button>
 
- </span>
+<button
+class="red"
+onclick="delBill(${i})">
+✕
+</button>
 
- </div>
+</span>
 
- `).join('')
+</div>
 
- :'<small>No saved bills</small>';
+`).join('')
+
+:'<small>No saved bills</small>';
+
 }
+
 
 function renderReports(){
 
- let a=bills();
+let a=bills();
 
- let sales=0;
- let mtr=0;
- let count=0;
- let party={};
- let item={};
+let sales=0;
 
- a.forEach(b=>
- (b.bill||[]).forEach(x=>{
+let mtr=0;
 
- let q=(x.lumps||[]).reduce(
- (s,v)=>s+Number(v||0),0
- );
+let count=0;
 
- let v=q*Number(x.rate||0);
+let party={};
 
- mtr+=q;
- sales+=v;
- count++;
+let item={};
 
- party[b.party]=
- (party[b.party]||0)+v;
+a.forEach(b=>
 
- item[x.name]=
- (item[x.name]||0)+q;
+(b.bill||[]).forEach(x=>{
 
- })
- );
+let q=
+(x.lumps||[]).reduce(
+(s,v)=>s+Number(v||0),
+0
+);
 
- $('rBills').textContent=a.length;
+let v=
+q*Number(x.rate||0);
 
- $('rMtr').textContent=money(mtr);
+mtr+=q;
 
- $('rSales').textContent=
- '₹'+money(sales);
+sales+=v;
 
- $('rItems').textContent=count;
+count++;
 
- $('reports').innerHTML=
+party[b.party]=
+(party[b.party]||0)+v;
 
- '<b>Party-wise Sales</b>'+
- Object.entries(party).map(x=>`
+item[x.name]=
+(item[x.name]||0)+q;
 
- <div class="saved">
- <b>${safe(x[0])}</b>
- <span>₹${money(x[1])}</span>
- </div>
+})
 
- `).join('')+
+);
 
- '<br><b>Item-wise Meter</b>'+
+$('rBills').textContent=a.length;
 
- Object.entries(item).map(x=>`
+$('rMtr').textContent=
+money(mtr);
 
- <div class="saved">
- <b>${safe(x[0])}</b>
- <span>${money(x[1])} Mtr</span>
- </div>
+$('rSales').textContent=
+'₹'+money(sales);
 
- `).join('');
+$('rItems').textContent=count;
+
+$('reports').innerHTML=
+
+'<b>Party-wise Sales</b>'+
+
+Object.entries(party).map(x=>`
+
+<div class="saved">
+
+<b>${safe(x[0])}</b>
+
+<span>
+₹${money(x[1])}
+</span>
+
+</div>
+
+`).join('')+
+
+'<br><b>Item-wise Meter</b>'+
+
+Object.entries(item).map(x=>`
+
+<div class="saved">
+
+<b>${safe(x[0])}</b>
+
+<span>
+${money(x[1])} Mtr
+</span>
+
+</div>
+
+`).join('');
+
 }
+
 
 function newBill(){
 
- $('party').value='';
- $('phone').value='';
+$('party').value='';
 
- bill=[];
+$('phone').value='';
 
- $('no').value=nextNo();
+bill=[];
 
- $('date').value=
- new Date().toISOString().slice(0,10);
+$('no').value=nextNo();
 
- renderBill();
+$('date').value=
+new Date()
+.toISOString()
+.slice(0,10);
+
+renderBill();
+
 }
 
+
+function printBill(){
+
+window.print();
+
+}
+
+
 ['party','phone','date'].forEach(
- x=>$(x).oninput=preview
+
+x=>
+$(x).oninput=preview
+
 );
 
 $('date').value=
-new Date().toISOString().slice(0,10);
+new Date()
+.toISOString()
+.slice(0,10);
 
 $('no').value=nextNo();
 
 renderItems();
+
 renderSaved();
+
 renderReports();
+
 renderBill();
 
 </script>
 
 </body>
-  </html>
+ </html>
